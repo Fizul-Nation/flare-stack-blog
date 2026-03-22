@@ -138,7 +138,8 @@ function parseWebpDimensions(
     if (bytes.length < 25) return null;
     // signature byte at offset 21 should be 0x2F
     if (bytes[21] !== 0x2f) return null;
-    const bits = bytes[22] | (bytes[23] << 8) | (bytes[24] << 16) | (bytes[25] << 24);
+    const bits =
+      bytes[22] | (bytes[23] << 8) | (bytes[24] << 16) | (bytes[25] << 24);
     const width = (bits & 0x3fff) + 1;
     const height = ((bits >> 14) & 0x3fff) + 1;
     return { width, height };
