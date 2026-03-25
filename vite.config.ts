@@ -32,7 +32,12 @@ const config = defineConfig(({ mode }) => {
           __dirname,
           `src/features/theme/themes/${buildEnv.THEME}`,
         ),
+        // Add this alias to fix the cloudflare:workers import
+        "cloudflare:workers": path.resolve(__dirname, "./src/mock-cloudflare.ts"),
       },
+    },
+    optimizeDeps: {
+      exclude: ['@cloudflare/workers-oauth-provider'],
     },
     plugins: [
       paraglideVitePlugin({
